@@ -1,5 +1,3 @@
-// Your code here
-
 const {
     createEmployeeRecord,
     createEmployeeRecords,
@@ -9,7 +7,7 @@ const {
     wagesEarnedOnDate,
     allWagesFor,
     calculatePayroll
-} = require('./helpers'); 
+} = require('./helpers');
 
 const employeesData = [
     ["Thor", "Odinsson", "Electrical Engineer", 45],
@@ -24,33 +22,28 @@ const employeesData = [
     ["Simba", "", "King", 100]
 ];
 
-//  employee records
 const employees = createEmployeeRecords(employeesData);
 
-//    date and shift timing
-const workDate = "2025-03-24";
-const timeInHour = "0800";
-const timeOutHour = "1700";
+console.log("Employees Data:");
+console.log(employees);
 
-// time-in and time-out records for all employees
+// Adding Time In and Time Out for all employees
 employees.forEach(employee => {
-    createTimeInEvent(employee, `${workDate} ${timeInHour}`);
-    createTimeOutEvent(employee, `${workDate} ${timeOutHour}`);
+    createTimeInEvent(employee, "2025-03-20 0900");
+    createTimeOutEvent(employee, "2025-03-20 1700");
 });
 
-// Log time-in, time-out, hours worked, and pay for all employees
-employees.forEach(employee => {
-    const hoursWorked = hoursWorkedOnDate(employee, workDate);
-    const wagesEarned = wagesEarnedOnDate(employee, workDate);
-    
-    console.log(`${employee.firstName} ${employee.familyName}:`);
-    console.log("  Time In Events:", employee.timeInEvents);
-    console.log("  Time Out Events:", employee.timeOutEvents);
-    console.log(`  Hours Worked: ${hoursWorked}`);
-    console.log(`  Wages Earned: $${wagesEarned.toFixed(2)}`);
-    console.log("--------------------------------");
-});
+console.log("Time In and Time Out Events:");
+console.log(employees);
 
-// Calculate total payroll for all employees
-const totalPayroll = calculatePayroll(employees);
-console.log(`Total Payroll: $${totalPayroll.toFixed(2)}`);
+// Checking hours worked by first employee
+console.log(`Hours Worked by ${employees[0].firstName} on 2025-03-20:`);
+console.log(hoursWorkedOnDate(employees[0], "2025-03-20"));
+
+// Checking wages earned by first employee
+console.log(`Wages Earned by ${employees[0].firstName} on 2025-03-20:`);
+console.log(wagesEarnedOnDate(employees[0], "2025-03-20"));
+
+// Calculating total payroll
+console.log("Total Payroll for All Employees:");
+console.log(calculatePayroll(employees));
